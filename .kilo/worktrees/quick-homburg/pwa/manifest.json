@@ -1,0 +1,46 @@
+{
+  "name": "Data Tutors - Online Learning Platform",
+  "short_name": "DataTutors",
+  "description": "Master Excel, Data Analysis, and Data Automation with our comprehensive online courses",
+  "start_url": "/index.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "shortcuts": [
+    {
+      "name": "My Courses",
+      "short_name": "Courses",
+      "description": "View your enrolled courses",
+      "url": "/dashboard/index.php",
+      "icons": [{ "src": "/assets/images/courses-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Browse Courses",
+      "short_name": "Browse",
+      "description": "Explore all available courses",
+      "url": "/course/index.php",
+      "icons": [{ "src": "/assets/images/browse-icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Admin Panel",
+      "short_name": "Admin",
+      "description": "Access admin dashboard",
+      "url": "/admin/index.php",
+      "icons": [{ "src": "/assets/images/admin-icon.png", "sizes": "192x192" }],
+      "available_offline": false
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

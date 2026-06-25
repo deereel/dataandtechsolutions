@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 1rem;
+        }
+        
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            margin: 2rem 0;
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #333;
+            min-width: 80px;
+        }
+        
+        input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100px;
+        }
+        
+        button {
+            padding: 0.5rem 1rem;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #1557b0;
+        }
+        
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube API Test - Video Start/Stop Functionality</h1>
+        
+        <p>This test demonstrates the YouTube API integration with start and stop times.</p>
+        
+        <div class="video-container">
+            <div id="youtube-player"></div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Start:</label>
+                <input type="number" id="startTime" value="5" min="0">
+                <span>s</span>
+            </div>
+            
+            <div class="control-group">
+                <label>Stop:</label>
+                <input type="number" id="stopTime" value="150" min="0">
+                <span>s</span>
+            </div>
+            
+            <button onclick="updateVideo()">Update</button>
+        </div>
+        
+        <div class="status">
+            <h3>Status Log:</h3>
+            <div id="statusLog"></div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let startTime = 5;
+        let stopTime = 150;
+
+        function logMessage(msg) {
+            const log = document.getElementById('statusLog');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `<div>[${timestamp}] ${msg}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function onYouTubeIframeAPIReady() {
+            logMessage('=== YouTube API Ready ===');
+            
+            player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: '0tdlR1rBwkM',
+                playerVars: {
+                    'start': startTime,
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        
+        function onPlayerReady(event) {
+            logMessage('✅ Video player ready');
+            event.target.playVideo();
+        }
+        
+        function onPlayerStateChange(event) {
+            logMessage(`🎬 Video state changed: ${stateToString(event.data)}`);
+            
+            if (stopTime > 0) {
+                if (event.data === YT.PlayerState.PLAYING) {
+                    checkTime();
+                }
+            }
+        }
+        
+        function stateToString(state) {
+            switch(state) {
+                case YT.PlayerState.PLAYING: return 'PLAYING';
+                case YT.PlayerState.PAUSED: return 'PAUSED';
+                case YT.PlayerState.ENDED: return 'ENDED';
+                case YT.PlayerState.BUFFERING: return 'BUFFERING';
+                case YT.PlayerState.CUED: return 'CUED';
+                default: return 'UNKNOWN';
+            }
+        }
+        
+        function checkTime() {
+            if (player && stopTime > 0) {
+                const currentTime = player.getCurrentTime();
+                logMessage(`⏱️ Current time: ${currentTime.toFixed(1)}s`);
+                
+                if (currentTime >= stopTime) {
+                    logMessage('⏹️ Reached stop time, pausing...');
+                    player.pauseVideo();
+                } else {
+                    setTimeout(checkTime, 500); // Check every 500ms
+                }
+            }
+        }
+        
+        function updateVideo() {
+            const newStart = parseInt(document.getElementById('startTime').value);
+            const newStop = parseInt(document.getElementById('stopTime').value);
+            
+            if (newStart < 0) newStart = 0;
+            if (newStop < newStart) newStop = newStart + 10;
+            
+            logMessage(`📊 Updating: start=${newStart}s, stop=${newStop}s`);
+            
+            startTime = newStart;
+            stopTime = newStop;
+            
+            // If player is ready, update
+            if (player) {
+                logMessage(`⏩ Seeking to ${startTime}s`);
+                player.seekTo(startTime);
+                player.playVideo();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Tutors & Tech Solutions</title>
-    <link rel="stylesheet" href="data-tutors/assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
 <body>
     <header class="header">
@@ -23,7 +23,7 @@
             <div class="container">
                 <h1>Master Data Skills That Advance Your Career</h1>
                 <p>Join thousands of professionals mastering Excel, Data Analysis, and Automation. Learn at your own pace with hands-on projects and earn certificates.</p>
-                <a href="data-tutors/index.php" class="btn btn-primary btn-lg">Learn More About Data Tutors</a>
+                <a href="index.php" class="btn btn-primary btn-lg">Learn More About Data Tutors</a>
             </div>
         </section>
 

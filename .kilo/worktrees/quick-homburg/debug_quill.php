@@ -1,0 +1,103 @@
+<?php
+// Simple test script to debug Quill content submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "<h2>POST Data Received:</h2>";
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    
+    if (isset($_POST['content'])) {
+        echo "<h2>Content Preview:</h2>";
+        echo $_POST['content'];
+    }
+} else {
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quill Debug Test</title>
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        button {
+            max-width: 200px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quill Debug Test</h1>
+    
+    <div class="container">
+        <h2>Test Editor:</h2>
+        <div id="testEditor" class="quill-editor" style="min-height: 200px;"></div>
+        
+        <form method="POST" action="debug_quill.php">
+            <input type="hidden" name="action" value="test">
+            <input type="hidden" name="content" id="testContentHidden">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+    <script>
+        let testEditor = null;
+        
+        // Initialize Quill editor
+        document.addEventListener('DOMContentLoaded', function() {
+            testEditor = new Quill('#testEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                },
+                placeholder: 'Type something...'
+            });
+        });
+        
+        // Save Quill content to hidden input before form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            console.log('Form submitted');
+            if (testEditor) {
+                const content = testEditor.root.innerHTML;
+                console.log('Editor content:', content);
+                document.getElementById('testContentHidden').value = content;
+                console.log('Hidden input value:', document.getElementById('testContentHidden').value);
+            }
+        });
+    </script>
+</body>
+</html>
+<?php
+}
+?>
