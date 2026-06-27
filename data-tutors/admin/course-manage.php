@@ -443,7 +443,7 @@ define('PAGE_TITLE', 'Manage Course: ' . $course['title']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= PAGE_TITLE ?> | <?= APP_NAME ?></title>
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <!-- Quill Rich Text Editor -->
     <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
     <style>

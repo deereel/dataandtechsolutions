@@ -4,35 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Tutors & Tech Solutions</title>
-    <link rel="stylesheet" href="data-tutors/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">Data Tutors & Tech Solutions</a>
+            <a href="index.php" class="logo">Data Tutors & Tech Solutions</a>
             <nav class="nav">
-                <a href="#tech-solutions" class="nav-link">Tech Solutions</a>
-                <a href="#data-tutors" class="nav-link">Data Tutors</a>
+                <a href="index.php#tech-solutions" class="nav-link">Tech Solutions</a>
+                <a href="index.php#data-tutors" class="nav-link">Data Tutors</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Data Tutors Section -->
-        <section id="data-tutors" class="fullpage-section">
-            <div class="container">
-                <h1>Master Data Skills That Advance Your Career</h1>
+    <main class="hub-container">
+        <section id="data-tutors" class="hub-section">
+            <div class="hub-content">
+                <h2>Master Data Skills That Advance Your Career</h2>
                 <p>Join thousands of professionals mastering Excel, Data Analysis, and Automation. Learn at your own pace with hands-on projects and earn certificates.</p>
-                <a href="data-tutors/index.php" class="btn btn-primary btn-lg">Learn More About Data Tutors</a>
+                <a href="data-tutors/index.php" class="btn btn-primary btn-lg">Visit Data Tutors</a>
             </div>
         </section>
 
-        <!-- Tech Solutions Section -->
-        <section id="tech-solutions" class="fullpage-section">
-            <div class="container">
-                <h1>Transform Your Business With Smart Technology</h1>
+        <section id="tech-solutions" class="hub-section">
+            <div class="hub-content">
+                <h2>Transform Your Business With Smart Technology</h2>
                 <p>We specialize in custom websites, automation solutions, and digital transformation services for modern businesses.</p>
-                <a href="tech-solutions/index.php" class="btn btn-success btn-lg">Start Your Tech Journey</a>
+                <a href="tech-solutions/index.php" class="btn btn-primary btn-lg">Visit Tech Solutions</a>
             </div>
         </section>
     </main>

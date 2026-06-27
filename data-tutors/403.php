@@ -17,7 +17,7 @@ define('PAGE_TITLE', 'Forbidden');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= PAGE_TITLE ?> | <?= APP_NAME ?></title>
     <meta name="description" content="You don't have permission to access this page. Please login or contact support.">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
         .error-hero {
             padding: 8rem 0;

@@ -17,7 +17,7 @@ define('PAGE_TITLE', 'Server Error');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= PAGE_TITLE ?> | <?= APP_NAME ?></title>
     <meta name="description" content="Something went wrong on our servers. Please try again later or contact support.">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
         .error-hero {
             padding: 8rem 0;

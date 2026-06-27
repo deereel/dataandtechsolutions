@@ -17,7 +17,7 @@ define('PAGE_TITLE', 'Unauthorized');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= PAGE_TITLE ?> | <?= APP_NAME ?></title>
     <meta name="description" content="You are not authorized to access this page. Please login with the appropriate credentials.">
-    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
         .error-hero {
             padding: 8rem 0;

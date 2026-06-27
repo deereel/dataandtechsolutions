@@ -25,7 +25,7 @@ define('DB_CHARSET', 'utf8mb4');
 
 // Application Configuration
 define('APP_NAME', 'Data Tutors');
-define('APP_URL', 'https://data_tutors.test');
+define('APP_URL', '/data-tutors/');
 define('APP_EMAIL', 'info@datatutors.com');
 define('APP_TIMEZONE', 'Africa/Lagos');
 
